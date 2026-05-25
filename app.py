@@ -53,8 +53,8 @@ with st.sidebar:
     st.subheader("Demografik Varsayımlar")
     turnover_rate = st.number_input(
         "İşten Ayrılma Olasılığı (%)",
-        min_value=0.0, max_value=50.0, value=8.0, step=0.5,
-        help="Yıllık gönüllü işten ayrılma / devir hızı."
+        min_value=0.0, max_value=50.0, value=0.0, step=0.5,
+        help="Türkiye pratiğinde genellikle 0 alınır. Şirkete özgü yüksek devir hızı varsa girilebilir."
     ) / 100
 
     retirement_age = st.number_input(
@@ -65,9 +65,15 @@ with st.sidebar:
 
     mortality_rate = st.number_input(
         "Ölüm Olasılığı (%)",
-        min_value=0.0, max_value=5.0, value=0.3, step=0.05,
-        help="TRH 2010 Türkiye mortalite tablosu — basitleştirilmiş sabit oran."
+        min_value=0.0, max_value=5.0, value=0.0, step=0.05,
+        help="Türkiye pratiğinde genellikle 0 alınır. Çalışma çağında etkisi ihmal edilebilir düzeydedir."
     ) / 100
+
+    st.caption(
+        "💡 **Türkiye pratiği:** Ölüm ve işten ayrılma olasılıkları "
+        "çoğu aktüeryal raporda sıfır alınır. Belirleyici varsayımlar "
+        "iskonto oranı ve maaş artış oranıdır."
+    )
 
     st.subheader("Duyarlılık Analizi")
     run_sensitivity = st.checkbox("±1% Senaryo Analizi Yap", value=True)
